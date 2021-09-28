@@ -27,6 +27,7 @@ build(){
     mkdir -p "${srcdir}/${_dir}/build"
     cd "${srcdir}/${_dir}/build"
     cmake .. \
+        -Wno-dev \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX=/usr \
         -DCMAKE_INSTALL_LIBDIR=lib \
