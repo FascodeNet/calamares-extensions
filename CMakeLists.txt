@@ -119,6 +119,19 @@ set(LIST_SKIPPED_MODULES "")
 #calamares_add_module_subdirectory( modules/slowpython LIST_SKIPPED_MODULES )  # Python job
 #calamares_add_module_subdirectory( modules/unpackfsc LIST_SKIPPED_MODULES )
 
+calamares_add_module_subdirectory( modules/welcome LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/shellprocess LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/plymouthcfg LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/users LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/unpackfs LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/grubcfg LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/initcpio LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/bootloader LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/services-systemd LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/removeuser LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/postcfg LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/webview LIST_SKIPPED_MODULES )
+
 # If modules cannot be built, they usually call a macro
 # which builds a list of explanations; show that list.
 calamares_explain_skipped_modules( ${LIST_SKIPPED_MODULES} )
