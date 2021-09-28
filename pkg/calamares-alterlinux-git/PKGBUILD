@@ -2,7 +2,7 @@
 
 _pkgname="calamares-extensions"
 pkgname="calamares-alterlinux-git"
-pkgver=r144.0865334
+pkgver=r141.e8dd526
 pkgrel=1
 pkgdesc="Calamares configs for AlterLinux"
 arch=('any')
