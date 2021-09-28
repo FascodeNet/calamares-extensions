@@ -2,7 +2,7 @@
 
 _pkgname="calamares-extensions"
 pkgname="calamares-alterlinux-git"
-pkgver=r151.aaf0824
+pkgver=r152.2bd72a1
 pkgrel=1
 pkgdesc="Calamares configs for AlterLinux"
 arch=('any')
@@ -43,7 +43,7 @@ package() {
 
     # Install configs
     for _conf in "${srcdir}/${_dir}/module-conf/"*".conf"; do
-        install -Dm "${_conf}" "${pkgdir}/etc/$(basename "${_conf}")"
+        install -Dm644 "${_conf}" "${pkgdir}/etc/$(basename "${_conf}")"
     done
 
     # Install data
