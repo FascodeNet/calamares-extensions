@@ -2,7 +2,7 @@
 
 _pkgname="calamares-extensions"
 pkgname="calamares-alterlinux-git"
-pkgver=r145.9ead7c4
+pkgver=r151.aaf0824
 pkgrel=1
 pkgdesc="Calamares configs for AlterLinux"
 arch=('any')
@@ -37,13 +37,20 @@ build(){
 }
 
 package() {
+    # Install extensions
     cd "${srcdir}/${_dir}/build"
     DESTDIR="${pkgdir}" make install
 
-    #install -Dm755 "${srcdir}/${_dir}/data/final-process" "$pkgdir/usr/share/calamares/final-process"
-    #install -Dm644 "${srcdir}/${_dir}/data/alter-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
+    # Install configs
+    for _conf in "${srcdir}/${_dir}/module-conf/"*".conf"; do
+        install -Dm "${_conf}" "${pkgdir}/etc/$(basename "${_conf}")"
+    done
+
+    # Install data
+    install -Dm755 "${srcdir}/${_dir}/data/final-process" "$pkgdir/etc/calamares/final-process"
+    install -Dm644 "${srcdir}/${_dir}/data/alter-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
     #install -Dm644 "${srcdir}/${_dir}/data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
     #install -Dm755 "${srcdir}/${_dir}/data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
-    #install -Dm644 "${srcdir}/${_dir}/data/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
-    #chmod 750      "$pkgdir"/etc/polkit-1/rules.d
+    install -Dm644 "${srcdir}/${_dir}/data/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
+    chmod 750      "$pkgdir"/etc/polkit-1/rules.d
 }
