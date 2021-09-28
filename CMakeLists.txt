@@ -93,7 +93,7 @@ endif()
 # Typically you would use only one branding, since that's
 # the (single) branding for your distro.
 #
-calamares_add_branding_subdirectory( branding/default NAME default )
+#calamares_add_branding_subdirectory( branding/default NAME default )
 calamares_add_branding_subdirectory( branding/default-mobile NAME default-mobile )
 calamares_add_branding_subdirectory( branding/fancy NAME fancy )
 calamares_add_branding_subdirectory( branding/alter NAME alter )
