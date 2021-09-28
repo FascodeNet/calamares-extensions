@@ -42,9 +42,9 @@ package() {
     DESTDIR="${pkgdir}" make install
 
     # Install configs
-    install -Dm644 "${srcdir}/${_dir}/settings.conf" "${pkgdir}/etc/settings.conf"
+    install -Dm644 "${srcdir}/${_dir}/settings.conf" "${pkgdir}/etc/calamares/settings.conf"
     for _conf in "${srcdir}/${_dir}/module-conf/"*".conf"; do
-        install -Dm644 "${_conf}" "${pkgdir}/etc/$(basename "${_conf}")"
+        install -Dm644 "${_conf}" "${pkgdir}/etc/calamares/$(basename "${_conf}")"
     done
 
     # Install data
