@@ -42,6 +42,7 @@ cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 
 set( CALAMARES_EXTENSIONS_VERSION 1.1.2 )
 
+set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
 include( ${CMAKE_CURRENT_LIST_DIR}/CMakeModules/ExtendedVersion.cmake )
 include( ${CMAKE_CURRENT_LIST_DIR}/CMakeModules/CalamaresAddTest.cmake)
 if ( CMAKE_SCRIPT_MODE_FILE )
