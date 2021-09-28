@@ -94,6 +94,7 @@ endif()
 calamares_add_branding_subdirectory( branding/default NAME default )
 calamares_add_branding_subdirectory( branding/default-mobile NAME default-mobile )
 calamares_add_branding_subdirectory( branding/fancy NAME fancy )
+calamares_add_branding_subdirectory( branding/alter NAME alter )
 
 # This one has files in subdirectories
 calamares_add_branding_subdirectory( branding/samegame NAME samegame SUBDIRECTORIES img )
