@@ -48,7 +48,7 @@ package() {
     done
 
     # Install data
-    install -Dm755 "${srcdir}/${_dir}/data/final-process" "$pkgdir/etc/calamares/final-process"
+    install -Dm755 "${srcdir}/${_dir}/data/run-scripts" "$pkgdir/etc/calamares/run-scripts"
     #install -Dm644 "${srcdir}/${_dir}/data/alter-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
     #install -Dm644 "${srcdir}/${_dir}/data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
     #install -Dm755 "${srcdir}/${_dir}/data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"

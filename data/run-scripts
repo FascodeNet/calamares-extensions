@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -eu
+
+while getopts 'u:' arg; do
+    case "${arg}" in
+        u) user="${OPTARG}";;
+        *) true            ;;
+    esac
+done
+
+# Run scripts in /etc/calamares/scripts.d
+if [[ -d "/etc/calamares/scripts.d/" ]]; then
+    for extra_script in "/etc/calamares/scripts.d/"*; do
+        bash -c "${extra_script}" "${user}"
+    done
+fi
