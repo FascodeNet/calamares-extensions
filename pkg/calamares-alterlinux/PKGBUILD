@@ -1,8 +1,8 @@
 # Maintaoner: Yamada Hayao <development@fascode.net>
 
 _pkgname="calamares-extensions"
-pkgname="calamares-alterlinux-git"
-pkgver=r156.d73ebf0
+pkgname="calamares-alterlinux"
+pkgver=1.0
 pkgrel=1
 pkgdesc="Calamares configs for AlterLinux"
 arch=('any')
@@ -13,15 +13,11 @@ depends=(
     #"alterlinux-calamares"
 )
 makedepends=('git')
-source=("git+${url}.git")
+source=("git+${url}.git#tag=v${pkgver}")
 md5sums=('SKIP')
 
 _dir="${_pkgname}"
 
-pkgver() {
-    cd "${_pkgname}"
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
 
 build(){
     mkdir -p "${srcdir}/${_dir}/build"
@@ -48,7 +44,7 @@ package() {
     done
 
     # Install data
-    install -Dm755 "${srcdir}/${_dir}/data/run-scripts" "$pkgdir/etc/calamares/run-scripts"
+    install -Dm755 "${srcdir}/${_dir}/data/final-process" "$pkgdir/etc/calamares/final-process"
     #install -Dm644 "${srcdir}/${_dir}/data/alter-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
     #install -Dm644 "${srcdir}/${_dir}/data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
     #install -Dm755 "${srcdir}/${_dir}/data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
