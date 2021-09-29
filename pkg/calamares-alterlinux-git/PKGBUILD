@@ -11,6 +11,7 @@ license=('GPLv3')
 depends=(
     "calamares"
     "cmake"
+    "qt5-tools"
 )
 makedepends=('git')
 source=("git+${url}.git")

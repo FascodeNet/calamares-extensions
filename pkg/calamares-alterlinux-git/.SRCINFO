@@ -8,6 +8,7 @@ pkgbase = calamares-alterlinux-git
 	makedepends = git
 	depends = calamares
 	depends = cmake
+	depends = qt5-tools
 	source = git+https://github.com/FascodeNet/calamares-extensions.git
 	md5sums = SKIP
 
