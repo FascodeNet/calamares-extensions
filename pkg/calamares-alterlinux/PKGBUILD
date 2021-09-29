@@ -10,7 +10,7 @@ url="https://github.com/FascodeNet/calamares-extensions"
 license=('GPLv3')
 depends=(
     "calamares"
-    #"alterlinux-calamares"
+    "cmake"
 )
 makedepends=('git')
 source=("git+${url}.git#tag=v${pkgver}")

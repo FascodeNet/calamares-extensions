@@ -7,6 +7,7 @@ pkgbase = calamares-alterlinux-git
 	license = GPLv3
 	makedepends = git
 	depends = calamares
+	depends = cmake
 	source = git+https://github.com/FascodeNet/calamares-extensions.git
 	md5sums = SKIP
 
