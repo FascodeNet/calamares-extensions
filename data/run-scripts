@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -eu
+user="alter"
 
 while getopts 'u:' arg; do
     case "${arg}" in
