@@ -13,6 +13,7 @@ done
 # Run scripts in /etc/calamares/scripts.d
 if [[ -d "/etc/calamares/scripts.d/" ]]; then
     for extra_script in "/etc/calamares/scripts.d/"*; do
-        bash -c "${extra_script}" "${user}"
+        chmod 755 "${extra_script}"
+        sudo bash "${extra_script}" "${user}"
     done
 fi
