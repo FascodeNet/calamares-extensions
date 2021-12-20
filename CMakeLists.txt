@@ -40,7 +40,7 @@
 #
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 
-set( CALAMARES_EXTENSIONS_VERSION 1.1.2 )
+set( CALAMARES_EXTENSIONS_VERSION 1.2.1 )
 
 set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
 include( ${CMAKE_CURRENT_LIST_DIR}/CMakeModules/ExtendedVersion.cmake )
@@ -62,7 +62,7 @@ set( CMAKE_CXX_STANDARD_REQUIRED ON )
 # consumers by loading the developer's config from a build
 # directory (which doesn't have the rest of the config
 # installed inside it).
-set( CALAMARES_VERSION_REQUIRED 3.2.43 )
+set( CALAMARES_VERSION_REQUIRED 3.2.46 )
 find_package(Calamares ${CALAMARES_VERSION_REQUIRED} NO_CMAKE_PACKAGE_REGISTRY)
 if (NOT TARGET Calamares::calamares OR NOT TARGET Calamares::calamaresui)
     find_package(Calamares ${CALAMARES_VERSION_REQUIRED} REQUIRED)
@@ -86,6 +86,7 @@ if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.10.0")
         "K_EXPORT_PLASMA_RUNNER"
     )
 endif()
+include( CTest )
 
 
 ### BRANDING
