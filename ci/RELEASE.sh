@@ -10,7 +10,7 @@
 # NOTE: this is largely a copy of the release script for Calamares,
 #       with not-applicable parts (such as translation-freeze) either
 #       commented-out, or skipped with if(false).
-# NOTE: this script contains Linuxisms (in particular, expects GNU mktemp(1))
+# NOTE: this script may contain Linuxisms
 #
 # This attempts to perform the different steps of the RELEASE.md
 # document automatically. It's not tested on other machines or
@@ -93,7 +93,7 @@ fi
 ### Setup
 #
 #
-BUILDDIR=$(mktemp -d --suffix=-build --tmpdir=.)
+BUILDDIR=$(mktemp -d -p . -t cala-tmp-XXXXX)
 
 ### Build with default compiler
 #
@@ -148,7 +148,7 @@ test -n "$V" || { echo "Could not obtain version in $BUILDDIR ." ; exit 1 ; }
 # This is the signing key ID associated with the GitHub account adriaandegroot,
 # which is used to create all "verified" tags in the Calamares repo.
 #
-KEY_ID="CFDDC96F12B1915C"
+KEY_ID="328D742D8807A435"
 git tag -u "$KEY_ID" -m "Release v$V" "v$V" || { echo "Could not sign tag v$V." ; exit 1 ; }
 
 ### Create the tarball
@@ -167,7 +167,7 @@ gpg -s -u $KEY_ID --detach --armor $TAR_FILE  # Sign the tarball
 #
 #
 D=$(date +%Y%m%d-%H%M%S)
-TMPDIR=$(mktemp -d --suffix="-calamares-$D")
+TMPDIR=$(mktemp -d -p . -t calamares.XXXXX)
 test -d "$TMPDIR" || { echo "Could not create tarball-build directory." ; exit 1 ; }
 tar xzf "$TAR_FILE" -C "$TMPDIR" || { echo "Could not unpack tarball." ; exit 1 ; }
 test -d "$TMPDIR/$TAR_V" || { echo "Tarball did not contain source directory." ; exit 1 ; }

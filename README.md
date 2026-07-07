@@ -40,7 +40,10 @@ and documentation for the framework that Calamares ships with.
    (probably moreso than the default slideshow).
  - [`kaos_branding/`](branding/kaos_branding/branding.desc)
    is a copy of the KaOS branding component, which
-   has translations and a bunch of fancy graphics.
+   has translations and a bunch of fancy graphics for the
+   slideshow. Plus it includes examples of using different
+   QML options for a vertical navigation bar and horizontal
+   sidebar.
  - [`samegame/` ](branding/default/branding.desc)
    is a copy of the Qt Company "Same Game" QML demo. It
    shows that **any** QML can be used for branding purposes.
@@ -161,10 +164,6 @@ phase).
 
 ### Example Modules
 
-- [filekeeper](modules/filekeeper/CMakeLists.txt) is a C++ **job** module
-  to copy files from the host (live) system to the target system at
-  the end of installation, like logfiles. (This module is made obsolete
-  by the *preservefiles* module included with Calamares proper)
 - [freebsddisk](modules/freebsddisk/CMakeLists.txt) is a C++ **view**
   module with a QML-based UI. It has no actual functionality, and serves
   as a test that view modules can be built out-of-tree.
@@ -217,15 +216,12 @@ The API is loosely documented in the
 GitHub Issues are **one** place for discussing Calamares (and Calamares Extensions)
 if there are concrete
 problems or a new feature to discuss.
+Issues are not a help channel.
+Visit Matrix for help with configuration or compilation.
 
 Regular Calamares development chit-chat happens in a [Matrix](https://matrix.org/)
-room, `#calamares:kde.org`. The conversation is bridged with IRC
-on [Libera.Chat](https://libera.chat/).
-Responsiveness is best during the day
-in Europe, but feel free to idle. If you use IRC, **DO NOT** ask-and-leave. Keep
-that chat window open because it can easily take a few hours for
-someone to notice a message.
+room, `#calamares:kde.org`. Responsiveness is best during the day
+in Europe, but feel free to idle.
 Matrix is persistent, and we'll see your message eventually.
 
 * [![Join us on Matrix](https://img.shields.io/badge/Matrix-%23calamares:kde.org-blue)](https://webchat.kde.org/#/room/%23calamares:kde.org)
-* [![Chat on IRC](https://img.shields.io/badge/IRC-Libera.Chat%20%23calamares-green)](https://kiwiirc.com/client/irc.libera.chat/#calamares)
