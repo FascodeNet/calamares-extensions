@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+#
+# mkarchiso empties /boot in the squashfs (the kernel and initramfs live on the
+# ISO instead) and replaces the mkinitcpio presets with archiso's own, so
+# unpackfs produces a target that has no kernel and would build an archiso
+# initramfs. Put the kernel back and let mkinitcpio's own template regenerate
+# the presets, before the initcpio job runs.
+#
+# usage: restore-target-kernel <target-root>
+
+set -euo pipefail
+
+root="${1:?target root required}"
+template=/usr/share/mkinitcpio/hook.preset
+
+if [[ ! -d "$root" ]]; then
+    printf 'restore-target-kernel: %s is not a directory\n' "$root" >&2
+    exit 1
+fi
+
+# The ISO keeps its kernels under <bootmnt>/<install_dir>/boot/<arch>/.
+mapfile -t kernels < <(find /run/archiso/bootmnt -type f -name 'vmlinuz-*' 2>/dev/null | sort)
+if ((${#kernels[@]} == 0)); then
+    printf 'restore-target-kernel: no kernel found under /run/archiso/bootmnt\n' >&2
+    exit 1
+fi
+
+install -d -m 0755 "$root/boot"
+for kernel in "${kernels[@]}"; do
+    install -m 0644 "$kernel" "$root/boot/$(basename "$kernel")"
+    printf 'restore-target-kernel: installed /boot/%s\n' "$(basename "$kernel")"
+done
+
+# archiso overwrote every preset, so drop them and regenerate from mkinitcpio's
+# template the same way the pacman hook does. pkgbase is the authoritative
+# kernel name; the vmlinuz file name only has to match it for stock kernels.
+[[ -f "$root$template" ]] || {
+    printf 'restore-target-kernel: %s is missing in the target\n' "$template" >&2
+    exit 1
+}
+
+rm -f "$root"/etc/mkinitcpio.d/*.preset
+for pkgbase_path in "$root"/usr/lib/modules/*/pkgbase; do
+    [[ -f "$pkgbase_path" ]] || continue
+    read -r pkgbase <"$pkgbase_path" || continue
+    [[ -n "$pkgbase" ]] || continue
+
+    sed "s|%PKGBASE%|${pkgbase}|g" "$root$template" \
+        | install -Dm644 /dev/stdin "$root/etc/mkinitcpio.d/${pkgbase}.preset"
+    printf 'restore-target-kernel: generated /etc/mkinitcpio.d/%s.preset\n' "$pkgbase"
+done
+
+# The archiso hooks are only meaningful while running from the ISO.
+rm -f "$root/etc/mkinitcpio.conf.d/archiso.conf"
