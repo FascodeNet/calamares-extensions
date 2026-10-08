@@ -165,6 +165,7 @@ set(LIST_SKIPPED_MODULES "")
 #
 # calamares_add_module_subdirectory( modules/unpackfsc LIST_SKIPPED_MODULES )
 calamares_add_module_subdirectory( modules/postcfg LIST_SKIPPED_MODULES )
+calamares_add_module_subdirectory( modules/cleanup LIST_SKIPPED_MODULES )
 
 message(STATUS "Calamares extensions ${CALAMARES_EXTENSIONS_VERSION} for Calamares version ${Calamares_VERSION}")
 

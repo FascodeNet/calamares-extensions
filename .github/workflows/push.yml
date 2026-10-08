@@ -40,6 +40,8 @@ jobs:
         uses: calamares/actions/prepare-neon@v2
       - name: "prepare source"
         uses: actions/checkout@v2
+      - name: "test cleanup"
+        run: python3 -m unittest discover -s tests -v
       - name: "prepare artifacts"
         run: tar xvzf "$BUILDDIR/calamares.tar.gz" -C / --strip-components 1
       - name: "build"

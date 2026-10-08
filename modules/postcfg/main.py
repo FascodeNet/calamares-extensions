@@ -95,9 +95,6 @@ class ConfigController:
         elif cpu_ucode == "GenuineIntel":
             self.remove_pkg("amd-ucode", "boot/amd-ucode.img")
 
-        # Remove calamares
-        self.remove_pkg("calamares", "usr/bin/calamares")
-
         # Copy skel to root
         self.copy_folder('etc/skel', 'root')
 
